@@ -23,6 +23,8 @@ jobs:
         pip install -U -r requirements.txt
     - name: Update Images
       run: python main.py
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Commit Images
       run: |
         if [[ "$(git status --porcelain)" != "" ]]; then
