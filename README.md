@@ -16,8 +16,11 @@ The finished SVG is saved to [output/stats.svg](output/stats.svg).
 The workflow is visible in [.github/workflows/main.yml](.github/workflows/main.yml).
 This is programmed to run `main.py` every 6 hours and, if there are changes, commit the newly generated SVG.
 
-Note: it can take some time for the image to update after the workflow has run.
+Note: It can take some time for the image to update after the workflow has run.
 GitHub seems to cache some images despite having been modified in the repo.
+
+Note #2: The percentages of the languages used may not exactly add up to 100% depending on rounding errors.
+It may sometimes appear to be 99.9% or 100.1% total.
 
 ## Use this for yourself
 
