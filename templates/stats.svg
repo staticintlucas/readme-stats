@@ -91,8 +91,8 @@
     {% for lang in langs %}
     <g transform="translate(415, {{ 33 + loop.index * 24 }})">
         <text x="0" y="12.5">{{ lang.name }}</text>
-        <line class="bar" x1="87" y1="8" x2="{{ 93 + 240 * lang.count / langs[0].count }}" y2="8" stroke="{{ lang.color }}" />
-        <text x="398" y="12.5" text-anchor="end">{{ "%2.1f"|format(100 * lang.count / langs|map(attribute="count")|sum()) }}%</text>
+        <line class="bar" x1="87" y1="8" x2="{{ '%.1f'|format(93 + 240 * lang.count / langs[0].count) }}" y2="8" stroke="{{ lang.color }}" />
+        <text x="398" y="12.5" text-anchor="end">{{ "%.1f"|format(100 * lang.count / langs|map(attribute="count")|sum()) }}%</text>
     </g>
     {% endfor %}
 </svg>
