@@ -9,6 +9,7 @@ from jinja2 import Environment, FileSystemLoader
 
 TEMPLATE_DIR = Path.cwd() / "templates"
 OUTPUT_DIR = Path.cwd() / "output"
+TEMPLATE_ROWS = 6
 
 
 def get_repos(client, after=None):
@@ -86,8 +87,16 @@ def get_stats(token):
             langs[name] = {
                 "name": name,
                 "count": count + (langs[name]["count"] if name in langs else 0),
-                "color": color,
+                "color": "#ccc" if color is None else color,
             }
+    langs = sorted(langs.values(), key=lambda l: l["count"], reverse=True)[:7]
+    if len(langs) > TEMPLATE_ROWS:
+        other = {
+            "name": "Other",
+            "count": sum(lang["count"] for lang in langs[TEMPLATE_ROWS-1:]),
+            "color": "#ccc",
+        }
+        langs = [*langs[:TEMPLATE_ROWS-1], other]
 
     contribs = get_contribs(client)
 
@@ -98,7 +107,7 @@ def get_stats(token):
         "issues":       contribs["totalIssueContributions"],
         "pull_reqs":    contribs["totalPullRequestContributions"],
         "contrib_to":   contribs["totalRepositoriesWithContributedCommits"],
-        "langs":        sorted(langs.values(), key=lambda l: l["count"], reverse=True),
+        "langs":        langs,
     }
 
 
