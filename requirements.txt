@@ -1,2 +1,2 @@
-gql<3
+gql[requests]
 jinja2
