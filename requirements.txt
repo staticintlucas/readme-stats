@@ -1,3 +1,2 @@
 gql[requests]
-urllib3<2
 jinja2
